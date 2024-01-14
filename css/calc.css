@@ -28,7 +28,7 @@ body {
 }
 
 .block-item {
-    
+    word-break: break-all;
     align-items: center;
     margin: 0 10px 10px 10px;
     margin-top: 50px;
