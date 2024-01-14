@@ -55,6 +55,13 @@
             var minFrequency = parseFloat(document.getElementById("minFrequency").value);
 
 
+            if (isNaN(supplyVoltage) || isNaN(transistorGain) || isNaN(collectorCurrentA) || isNaN(minFrequency) ||
+        supplyVoltage <= 0 || transistorGain <= 0 || collectorCurrentA <= 0 || minFrequency <= 0) {
+        alert("Проверьте введенные значения.");
+        return;
+    }
+
+
             var collectorCurrent = collectorCurrentA / 1000;
             var currentBase = collectorCurrent / transistorGain;
             var currentDivider = transistorGain * 4.5;

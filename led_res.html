@@ -54,6 +54,12 @@
             var ledCurrent = parseFloat(document.getElementById('ledCurrent').value);
             var colorVoltage = parseFloat(document.getElementById('colorVoltage').value);
 
+            if (isNaN(voltage) || isNaN(ledCurrent) || voltage <= 0 || ledCurrent <= 0) {
+    alert("Проверьте введенные значения."); return;}
+
+
+
+
             var Resistance =1000*((voltage - colorVoltage) / ledCurrent) ;
 
             document.getElementById("Resistance").innerHTML = Resistance.toFixed(1) + " Ом";

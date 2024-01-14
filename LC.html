@@ -62,6 +62,13 @@
 
 
 
+            if (isNaN(inductance) || isNaN(capacitance) || isNaN(quality) || 
+            inductance <= 0 || capacitance <= 0 || quality <= 0 ) {
+        alert("Проверьте введенные значения.");
+        return;
+    }
+
+
             var inductanceUnit = document.getElementById("inductanceUnit").value;
             var capacitanceUnit = document.getElementById("capacitanceUnit").value;
 
