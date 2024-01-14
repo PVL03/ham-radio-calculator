@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/led_res.css" />  
+    <title>Калькулятор токоограничивающего резистора для светодиода</title>
+    <h1 class="heading">Расчет токоограничивающего сопротивления для светодиода</h1>
+</head>
+
+<body>
+    <div class="description">
+        На данной странице вы можете рассчитать значения токоограничивающего сопротивления для светодиода
+
+
+    </div>
+    
+    <div class="main"> 
+
+        <div class="circuit">
+            <img src="img/led.png" alt="">
+        </div>
+
+
+    <div class="calc">
+
+
+        
+        <label for="voltage">Напряжение питания (В):</label>
+        <input type="number" id="voltage" step="0.1" required>
+
+        <p> <label for="ledCurrent">Ток светодиода (мА):</label>
+        <input type="number" id="ledCurrent" step="0.1" required>
+
+        <p> <label for="colorVoltage">Цвет светодиода:</label>
+        <select id="colorVoltage" required>
+            <option value="1.5">Инфракрасный (1.5 В)</option>
+            <option value="1.8">Красный (1.8 В)</option>
+            <option value="2.05">Оранжевый (2.05 В)</option>
+            <option value="2.1">Желтый (2.1 В)</option>
+            <option value="3.1">Зеленый (3.1 В)</option>
+            <option value="3.3">Синий (3.3 В)</option>
+            <option value="3.4">Фиолетовый (3.4 В)</option>
+            <option value="3.5">Ультрафиолетовый (3.4 В)</option>
+            <option value="3.0">Белый (3.4 В)</option>
+        </select>
+
+        <button type="button" onclick="calculateResistance()">Рассчитать !</button>
+        <p>Сопротивление токоограничивающего резистора R: <span id="Resistance"></span></p>
+    </div>
+</div>
+    <script>
+        function calculateResistance() {
+            var voltage = parseFloat(document.getElementById('voltage').value);
+            var ledCurrent = parseFloat(document.getElementById('ledCurrent').value);
+            var colorVoltage = parseFloat(document.getElementById('colorVoltage').value);
+
+            var Resistance =1000*((voltage - colorVoltage) / ledCurrent) ;
+
+            document.getElementById("Resistance").innerHTML = Resistance.toFixed(1) + " Ом";
+        }
+    </script>
+
+
+
+
+<div class="note">
+    <p>
+        Токоограничивающий резистор для светодиода используется для ограничения тока, протекающего через светодиод, чтобы предотвратить его повреждение и обеспечить его стабильную работу. Выбор значения резистора зависит от напряжения питания, типа светодиода и требуемого тока через него.<br>
+        Обычно значение резистора рассчитывается по формуле:<br>
+        R = (V - Vf) / If,<br>
+        где:<br>
+        R - сопротивление резистора,<br>
+        V - напряжение питания,<br>
+        Vf - прямое напряжение светодиода, которое зависит от его цвета свечения,<br>
+        If - требуемый ток через светодиод.<br>
+        После расчета нужного сопротивления резистора выбирается ближайший стандартный номинал.
+        </p>
+</div>
+
+
+    <section class="end">
+        <div class="bottom">
+            <h1 class="b_name">© Все на этом сайте защищено</h1>           
+            </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расчет резонанса колебательного контура</title>
+    <h1 class="heading">Расчет резонанса LC контура</h1>
+    <link rel="stylesheet" href="css/LC.css" />
+</head>
+
+
+<body>
+
+
+    <div class="description">
+        На данной странице вы можете рассчитать резонансную частоту параллельного LC колебательного контура
+    </div>
+    
+
+    <div class="main"> 
+    <div class="circuit">
+        <img src="img/LC.png" alt="">
+    </div>
+
+
+    <div class="calc">
+
+
+        <label for="inductance">Индуктивность (Гн):</label>
+        <input type="number" id="inductance" name="inductance" step="0.1" required>
+        <label><select name="inductanceUnit" id="inductanceUnit">
+            <option value="nH">нГн</option>
+            <option value="mH">мкГн</option>
+            <option value="uH">мГн</option>
+            <option value="H" selected>Гн</option>
+        </select></label>
+
+      <p>  <label for="capacitance">Емкость (Ф):</label>
+        <input type="number" id="capacitance" name="capacitance" step="0.1" required>
+        <label><select name="capacitanceUnit" id="capacitanceUnit">
+            <option value="pF">пФ</option>
+            <option value="nF">нФ</option>
+            <option value="uF">мкФ</option>
+        </select></label></p>
+
+
+        <p><label for="quality">Добротность контура:</label>
+            <input id="quality" type="number" > </p>
+
+        <button type="button" onclick="calculateResonance()">Рассчитать !</button>
+
+        <p>Резонансная частота: <span id="Freq"></span></p>
+        <p>Характеристическое сопротивление: <span id="res"></span></p>
+        <p>Сопротивление потерь: <span id="losses"></span></p>
+    </div>
+</div>
+    <script>
+        function calculateResonance() {
+            var inductance = parseFloat(document.getElementById("inductance").value);
+            var capacitance = parseFloat(document.getElementById("capacitance").value);
+            var quality = parseFloat(document.getElementById("quality").value);
+
+
+
+            var inductanceUnit = document.getElementById("inductanceUnit").value;
+            var capacitanceUnit = document.getElementById("capacitanceUnit").value;
+
+            var inductanceValue = convertToHenry(inductance, inductanceUnit);
+        var capacitanceValue = convertToFarad(capacitance, capacitanceUnit);
+
+        Freq = 0.001 / (2 * 3.141592 * Math.sqrt(inductanceValue * capacitanceValue));
+
+        res = Math.sqrt(inductanceValue / capacitanceValue);
+
+        losses = (1/quality)*(res);
+
+        
+
+         document.getElementById("Freq").innerText = Freq.toFixed(2)+ " кГц";
+         document.getElementById("losses").innerText = losses.toFixed(2)+ " Ом";
+         document.getElementById("res").innerText = res.toFixed(2)+ " Ом";
+        }
+
+        function convertToHenry(value, unit) {
+            switch (unit) {
+                case "nH":
+                    return value / 1000000000;
+                case "mH":
+                    return value / 1000000;
+                case "uH":
+                    return value / 1000;
+                case "H":
+                    return value;
+                default:
+                    return value;
+            }
+        }
+
+        function convertToFarad(value, unit) {
+            switch (unit) {
+                case "pF":
+                    return value / 1000000000000;
+                case "nF":
+                    return value / 1000000000;
+                case "uF":
+                    return value / 1000000;
+                default:
+                    return value;
+            }
+        }
+    </script>
+
+
+
+
+<div class="note">
+
+
+<p>
+
+
+   <p>
+    Колебательные RLC-контуры широко применяются в радиотехнике и аналоговой схемотехнике. Добротность контура играет важную роль, так как от нее зависит полоса пропускания RLC-контура при его рассмотрении как фильтра полосы частот 
+    (2df = Q * F0). <br> Добротность контура зависит от сопротивления потерь, основными компонентами которого являются как потери в катушке индуктивности, так и номинал шунтирующего элемента.
+    
+   </p>
+   <p>
+    Они используются для различных целей, таких как:<br>
+<li>Настройка частоты: RLC-контуры используются для настройки частоты электрических сигналов. Они позволяют регулировать частоту колебаний, что важно для обеспечения правильной работы радиоприемников и передатчиков, а также различных электронных устройств, например, таких как резонансный усилитель сигнала или умножитель частоты.
+    Фильтрация сигналов: RLC-контура могут использоваться для фильтрации нежелательных частот из сигналов, что позволяет улучшить качество принимаемых радиосигналов и снизить уровень помех.</li>
+<li>Генерация сигналов: В генераторах сигналов используются RLC-цепи для создания стабильных колебаний определенной частоты. Эти генераторы могут использоваться в различных приложениях, таких как тестирование радиооборудования, измерение характеристик электронных компонентов и другие.</li>
+<li>Измерение параметров электронных компонентов: RLC-измерители могут использоваться для измерения значений сопротивления, индуктивности и емкости различных электронных компонентов.</li>
+
+   </p>
+
+
+</p>
+    
+</div>
+
+<section class="end">
+    <div class="bottom">
+        <h1 class="b_name">© Все на этом сайте защищено</h1>           
+        </div>
+</section>
+</body>
+</html>

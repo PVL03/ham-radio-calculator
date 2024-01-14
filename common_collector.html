@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Расчет усилителя по схеме с общим коллектором</title>
+    <h1 class="heading">Расчет усилителя по схеме с общим коллектором</h1>
+    <link rel="stylesheet" href="css/c_collector.css" />
+</head>
+
+<body>
+    <div class="description">
+        На данной странице вы можете рассчитать значения компонентов для усилителя, собранного по схеме с общим коллектором
+    </div>
+
+    <div class="main">
+        
+
+        <div class="block-item">
+        <div class="circuit">
+            <img src="img/c_col.png" alt="">
+        </div>
+    </div>
+
+
+    <div class="block-item">
+        <div class="calc">
+            <label for="supplyVoltage">Напряжение питания (В):</label>
+            <input id="supplyVoltage" type="number" step="0.1">
+
+            <p><label for="collectorCurrentA">Ток коллектора (мА):</label>
+            <input id="collectorCurrentA" type="number" step="0.1"> </p>
+
+            <p> <label for="transistorGain">Коэффициент усиления транзистора (β):</label>
+            <input id="transistorGain" type="number"> </p>
+
+            <p> <label for="minFrequency">Минимальная частота работы усилителя (Гц):</label>
+            <input id="minFrequency" type="number"> </p>
+
+            <button onclick="calculateResistances()">Рассчитать !</button>
+
+            <h2>Результаты расчета:</h2>
+            <p>Сопротивление базы Rб1: <span id="baseResistance1"></span></p>
+            <p>Сопротивление базы Rб2: <span id="baseResistance2"></span></p>
+            
+            <p>Сопротивление эмиттера Rэ: <span id="emitterResistance"></span></p>
+            <p>Рекомендуемая емкость конденсаторов С1 и C2, не менее: <span id="capacitorValue"></span></p>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function calculateResistances() {
+            var supplyVoltage = parseFloat(document.getElementById("supplyVoltage").value);
+            var transistorGain = parseFloat(document.getElementById("transistorGain").value);
+            var collectorCurrentA = parseFloat(document.getElementById("collectorCurrentA").value);
+            var minFrequency = parseFloat(document.getElementById("minFrequency").value);
+
+
+            var collectorCurrent = collectorCurrentA / 1000;
+            var currentBase = collectorCurrent / transistorGain;
+            var currentDivider = transistorGain * 4.5;
+
+            var voltageResistanseEmitter = supplyVoltage * 0.05;
+            var voltageResistanseCollector = (supplyVoltage - voltageResistanseEmitter) / 2;
+
+            var baseResistance1 = 1000000*((supplyVoltage/2) / currentDivider) ;
+            var baseResistance2 = 1000000*((supplyVoltage/2) / (currentDivider - currentBase)) ;
+           
+            var emitterResistance = voltageResistanseEmitter / (currentBase + collectorCurrent);
+
+
+          
+            var capacitorValue =1000* ( 1/ (2*3.14*minFrequency));
+
+            document.getElementById("baseResistance1").innerHTML = baseResistance1.toFixed(1) + " Ом";
+            document.getElementById("baseResistance2").innerHTML = baseResistance2.toFixed(1)+ " Ом";
+           
+            document.getElementById("emitterResistance").innerHTML = emitterResistance.toFixed(1)+ " Ом";
+            document.getElementById("capacitorValue").innerHTML = capacitorValue.toFixed(2)+ " мкФ";
+        }
+    </script>
+
+<div class="note">
+
+   <p> Схема включения с общим коллектором (эмиттерный повторитель) является является одной из трех возможных конфигураций транзисторных усилителей на биполярном транзисторе. В данной схеме включения сигнал поступает на базу транзистора и снимается с эмиттера. Коллектор же подключается к общему проводу. Как правило, в аналоговой схемотехнике данный тип включения используется для согласования предоконечного каскада (в качестве буферного каскада) с нагрузкой, имеющей малые номиналы.</p>
+
+    <p>Достоинства схемы:
+        <li>Большое входное сопротивление и низкое выходное, что позволяет использовать общий коллектор как буферный согласующий каскад между источником напряжения (генератором) и маленькой нагрузкой.</li>
+        <li>Не инвертирует напряжение, но инвертирует фазу тока на 180 градусов.</li>
+       <li> Высокая термостабильность.</li></p>
+    
+    <p>
+        Недостатки схемы:
+    <li>Не усиливает по напряжению (коэффициент связи по напряжению составляет примерно 0.9 - 0.95).</li>
+   <li> Высокая чувствительность к помехам и тепловым шумам ввиду особенностей данной схемы включения (основной вклад вносят резисторы с большим номиналом).</li>
+    </p>
+    
+
+</div>
+
+
+<section class="end">
+    <div class="bottom">
+        <h1 class="b_name">© Все на этом сайте защищено</h1>           
+        </div>
+</section>
+
+</body>
+</html>
