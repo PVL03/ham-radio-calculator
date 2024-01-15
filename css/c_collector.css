@@ -1,10 +1,6 @@
 body {
-  
   background-color: #b8d4ef;
- 
 }
-
-
 
 .heading {
   display: flex;
@@ -35,7 +31,6 @@ text-align: center;
   text-align: center;
 }
 
-
 .main {
 
   display: flex;
@@ -58,9 +53,7 @@ img {
   display: flex;
   max-width: 600px;
   background-color: #b8d4ef;
-  
 }
-
 
 button {
   background-color: #4196EE;
@@ -74,9 +67,7 @@ button {
 
 button:hover {
   background-color: #236FB8; 
-
 }
-
 
 .block-item{
   align-items: center;
@@ -86,11 +77,8 @@ button:hover {
   margin-left: 50px;
   margin-right: 50px;
   margin-bottom: 50px;
-     font-size: 18px;
-
+  font-size: 18px;
 }
-
-
 
 .end {
   width: 100%;
@@ -115,11 +103,8 @@ button:hover {
   text-align: center;
 }
 
-
 @media screen and (max-width: 992px) 
 {
-
-
  .main {
  flex-direction: column;
  align-items: center;
