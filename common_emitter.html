@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Расчет ТОЙОТА по схеме с общим ТОЙОТА</title>
-    <h1 class="heading">Расчет ТОЙОТА по схеме с общим ТОЙОТА</h1>
+    <title>Расчет усилителя по схеме с общим эмиттером</title>
+    <h1 class="heading">Расчет усилителя по схеме с общим эмиттером</h1>
     <link rel="stylesheet" href="css/c_emitter.css" />
 </head>
 
 <body>
     <div class="description">
-        На данной ТОЙОТА вы можете рассчитать значения ТОЙОТА для ТОЙОТА, собранного по схеме с общим ТОЙОТА
+        На данной странице вы можете рассчитать значения компонентов для усилителя, собранного по схеме с общим эмиттером
     </div>
 
     <div class="main">
@@ -16,33 +16,33 @@
 
         <div class="block-item">
         <div class="circuit">
-            <img src="img/oe.jpg" alt="">
+            <img src="img/c_em.png" alt="">
         </div>
     </div>
 
 
     <div class="block-item">
         <div class="calc">
-            <label for="supplyVoltage">Напряжение  ТОЙОТА (В):</label>
+            <label for="supplyVoltage">Напряжение питания (В):</label>
             <input id="supplyVoltage" type="number" step="0.1">
 
-            <p><label for="collectorCurrentA">Ток  ТОЙОТА (мА):</label>
+            <p><label for="collectorCurrentA">Ток коллектора (мА):</label>
             <input id="collectorCurrentA" type="number" step="0.1"> </p>
 
-            <p> <label for="transistorGain">Коэффициент усиления  ТОЙОТА (β):</label>
+            <p> <label for="transistorGain">Коэффициент усиления транзистора (β):</label>
             <input id="transistorGain" type="number"> </p>
 
-            <p> <label for="minFrequency">Минимальная частота работы  ТОЙОТА (Гц):</label>
+            <p> <label for="minFrequency">Минимальная частота работы усилителя (Гц):</label>
             <input id="minFrequency" type="number"> </p>
 
-            <button onclick="calculateResistances()"> ТОЙОТА !</button>
+            <button onclick="calculateResistances()">Рассчитать !</button>
 
-            <h2>Результаты ТОЙОТА:</h2>
-            <p>Сопротивление  ТОЙОТА Rб1: <span id="baseResistance1"></span></p>
-            <p>Сопротивление  ТОЙОТА Rб2: <span id="baseResistance2"></span></p>
-            <p>Сопротивление  ТОЙОТА Rк: <span id="collectorResistance"></span></p>
-            <p>Сопротивление  ТОЙОТА Rэ: <span id="emitterResistance"></span></p>
-            <p>Рекомендуемая емкость  ТОЙОТА С1 и C2, не менее: <span id="capacitorValue"></span></p>
+            <h2>Результаты расчета:</h2>
+            <p>Сопротивление базы Rб1: <span id="baseResistance1"></span></p>
+            <p>Сопротивление базы Rб2: <span id="baseResistance2"></span></p>
+            <p>Сопротивление коллектора Rк: <span id="collectorResistance"></span></p>
+            <p>Сопротивление эмиттера Rэ: <span id="emitterResistance"></span></p>
+            <p>Рекомендуемая емкость конденсаторов С1 и C2, не менее: <span id="capacitorValue"></span></p>
         </div>
     </div>
     </div>
@@ -58,7 +58,7 @@
 
             if (isNaN(supplyVoltage) || isNaN(transistorGain) || isNaN(collectorCurrentA) || isNaN(minFrequency) ||
         supplyVoltage <= 0 || transistorGain <= 0 || collectorCurrentA <= 0 || minFrequency <= 0) {
-        alert("Проверьте масло в  ТОЙОТА.");
+        alert("Проверьте введенные значения.");
         return;
     }
 
@@ -89,25 +89,26 @@
 <div class="note">
 
     <p>
-        ТОЙОТА  ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА ТОЙОТА.
+        Схема включения с общим эмиттером является одной из трех возможных конфигураций транзисторных усилителей на биполярном транзисторе. Данная схема характеризуется тем, что входной сигнал поступает на базу транзистора и снимается с коллектора. Эмиттер же подключен к общему проводу. <br>
+Схема с общим эмиттером часто используется в усилителях и генераторах. Она является универсальным решением для усиления слабых сигналов.
     </p>
 
 <p>
-    Достоинства  ТОЙОТА:
-<li> ТОЙОТА</li>
-<li> ТОЙОТА ТОЙОТА</li>
-<li> ТОЙОТА ТОЙОТА ТОЙОТА .</li>
+    Достоинства схемы:
+<li>Возможность усиления по току и напряжению.</li>
+<li>Инвертируюет фазу входного сигнала на 180 градусов, но не инвертирует фазу тока.</li>
+<li>Высокое входное сопротивление и низкое выходное, что облегчает согласование с другими усилительными каскадами.</li>
 </p>
 
-<p>Недостатки  ТОЙОТА:
-    <li> ТОЙОТА.</li>
-    <li> ТОЙОТА ТОЙОТА ТОЙОТА.</li></p>
+<p>Недостатки схемы:
+    <li>Низкая термостабильность: для корректной работы усилительного каскада необходимо вносить изменения в схемы путем добавления резисторов и конденсаторов ОС, что повышает термостабильность, но снижает коэффициент связи по напряжению (в рассчитываемой схемы применена эмиттерная коррекция путем внедрения резистора, на котором падает часть полезного напряжения).</li>
+    <li>Схема вносит сильные искажения в сигнал на высоких частотах, имеет низкую полосу пропускания.</li></p>
 </div>
 
 
 <section class="end">
     <div class="bottom">
-        <h1 class="b_name">© Все на этом сайте ТОЙОТА</h1>           
+        <h1 class="b_name">© Все на этом сайте защищено</h1>           
         </div>
 </section>
 
